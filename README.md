@@ -1,1 +1,0 @@
-# Faruuuqqq.github.io
