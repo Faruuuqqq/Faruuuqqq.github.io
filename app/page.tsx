@@ -1,9 +1,10 @@
-import { Github, Mail, Linkedin } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
+import { Github, Mail, Linkedin } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image"; // <-- Impor komponen Image
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   return (
@@ -46,7 +47,8 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Hi, I'm <span className="text-primary">Achmad Faruq Mahdison</span>
+                    {/* PERBAIKAN: Mengganti ' dengan &apos; */}
+                    Hi, I&apos;m <span className="text-primary">Achmad Faruq Mahdison</span>
                   </h1>
                   <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
                     A passionate web developer specializing in creating beautiful and functional websites.
@@ -97,8 +99,9 @@ export default function Home() {
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">About Me</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                I’m currently a Computer Science student at Universitas Padjadjaran. With a strong interest in backend development, 
-                I’ve built various projects using Node.js, Express, MERN Stack, Typescript. I love clean architecture, API design, and continuously improving my skills through real-world projects.
+                  {/* PERBAIKAN: Mengganti ' dengan &apos; */}
+                  I&apos;m currently a Computer Science student at Universitas Padjadjaran. With a strong interest in backend development,
+                  I&apos;ve built various projects using Node.js, Express, MERN Stack, Typescript. I love clean architecture, API design, and continuously improving my skills through real-world projects.
                 </p>
               </div>
               <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
@@ -134,8 +137,9 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="flex justify-center">
-                  <img
-                    src="/placeholder.svg?height=400&width=400"
+                  {/* PERBAIKAN: Menggunakan komponen Image dari Next.js */}
+                  <Image
+                    src="/placeholder.svg"
                     width={400}
                     height={400}
                     alt="About me"
@@ -160,19 +164,19 @@ export default function Home() {
                 <ProjectCard
                   title="E-commerce Website"
                   description="A fully functional e-commerce platform with payment integration"
-                  image="/placeholder.svg?height=300&width=400"
+                  image="/placeholder.svg"
                   tags={["React", "Node.js", "MongoDB"]}
                 />
                 <ProjectCard
                   title="Portfolio Website"
                   description="A responsive portfolio website for a photographer"
-                  image="/placeholder.svg?height=300&width=400"
+                  image="/placeholder.svg"
                   tags={["Next.js", "Tailwind CSS", "Framer Motion"]}
                 />
                 <ProjectCard
                   title="Task Management App"
                   description="A drag-and-drop task management application"
-                  image="/placeholder.svg?height=300&width=400"
+                  image="/placeholder.svg"
                   tags={["React", "Firebase", "TypeScript"]}
                 />
               </div>
@@ -305,10 +309,19 @@ export default function Home() {
   )
 }
 
-function ProjectCard({ title, description, image, tags }) {
+// Menambahkan tipe untuk props ProjectCard (jika belum ada)
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
+
+function ProjectCard({ title, description, image, tags }: ProjectCardProps) {
   return (
     <Card className="overflow-hidden">
-      <img src={image || "/placeholder.svg"} alt={title} className="w-full h-48 object-cover" />
+      {/* PERBAIKAN: Menggunakan komponen Image dari Next.js */}
+      <Image src={image || "/placeholder.svg"} alt={title} width={400} height={300} className="w-full h-48 object-cover" />
       <CardContent className="p-6">
         <h3 className="text-xl font-bold">{title}</h3>
         <p className="text-gray-500 mt-2">{description}</p>
@@ -321,10 +334,16 @@ function ProjectCard({ title, description, image, tags }) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
-function SkillCategory({ title, skills }) {
+// Menambahkan tipe untuk props SkillCategory (jika belum ada)
+interface SkillCategoryProps {
+  title: string;
+  skills: string[];
+}
+
+function SkillCategory({ title, skills }: SkillCategoryProps) {
   return (
     <Card>
       <CardContent className="p-6">
@@ -338,5 +357,5 @@ function SkillCategory({ title, skills }) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
