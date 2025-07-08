@@ -12,17 +12,13 @@ const config = {
   prefix: "",
   theme: {
     container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      center: true, // Membuat class .container menjadi di tengah
     },
     extend: {
-      // Anda bisa menambahkan kustomisasi tema di sini
+      // Kustomisasi lain bisa ditambahkan di sini
     },
   },
-  plugins: [tailwindcssAnimate], // <-- Gunakan variabel yang sudah di-import
+  plugins: [tailwindcssAnimate],
 };
 
 export default config;
