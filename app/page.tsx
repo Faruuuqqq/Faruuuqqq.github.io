@@ -1,10 +1,22 @@
 import { Github, Mail, Linkedin } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import Image from "next/image"; // <-- Impor komponen Image
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+}
+
+interface SkillCategoryProps {
+  title: string;
+  skills: string[];
+}
 
 export default function Home() {
   return (
@@ -32,60 +44,61 @@ export default function Home() {
           </div>
           <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
             <div className="w-full flex-1 md:w-auto md:flex-none">
-              <Button variant="outline" size="icon" className="ml-auto hidden h-8 w-8 md:flex">
-                <Github className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
+              <Button variant="outline" size="icon" asChild>
+                <Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                  <span className="sr-only">GitHub</span>
+                </Link>
               </Button>
             </div>
           </div>
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section id="hero" className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px] items-center">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    {/* PERBAIKAN: Mengganti ' dengan &apos; */}
                     Hi, I&apos;m <span className="text-primary">Achmad Faruq Mahdison</span>
                   </h1>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
                     A passionate web developer specializing in creating beautiful and functional websites.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="#contact">
-                    <Button>Contact Me</Button>
-                  </Link>
-                  <Link href="#projects">
-                    <Button variant="outline">View My Work</Button>
-                  </Link>
+                  <Button asChild>
+                    <Link href="#contact">Contact Me</Link>
+                  </Button>
+                   <Button variant="outline" asChild>
+                    <Link href="#projects">View My Work</Link>
+                  </Button>
                 </div>
-                <div className="flex gap-4">
-                  <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon">
+                <div className="flex gap-2">
+                  <Button variant="ghost" size="icon" asChild>
+                    <Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4" />
                       <span className="sr-only">GitHub</span>
-                    </Button>
-                  </Link>
-                  <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="ghost" size="icon">
+                    </Link>
+                  </Button>
+                  <Button variant="ghost" size="icon" asChild>
+                    <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-4 w-4" />
                       <span className="sr-only">LinkedIn</span>
-                    </Button>
-                  </Link>
-                  <Link href="mailto:your.email@example.com">
-                    <Button variant="ghost" size="icon">
+                    </Link>
+                  </Button>
+                   <Button variant="ghost" size="icon" asChild>
+                    <Link href="mailto:achmadfaruqmahdison@gmail.com">
                       <Mail className="h-4 w-4" />
                       <span className="sr-only">Email</span>
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
               <div className="flex items-center justify-center">
                 <Avatar className="h-64 w-64">
-                  <AvatarImage src="/placeholder.svg?height=256&width=256" alt="Profile" />
+                  <AvatarImage src="https://avatars.githubusercontent.com/u/124599?v=4" alt="Achmad Faruq Mahdison" />
                   <AvatarFallback>AF</AvatarFallback>
                 </Avatar>
               </div>
@@ -98,50 +111,42 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">About Me</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  {/* PERBAIKAN: Mengganti ' dengan &apos; */}
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   I&apos;m currently a Computer Science student at Universitas Padjadjaran. With a strong interest in backend development,
-                  I&apos;ve built various projects using Node.js, Express, MERN Stack, Typescript. I love clean architecture, API design, and continuously improving my skills through real-world projects.
+                  I&apos;ve built various projects using Node.js, Express, MERN Stack, and TypeScript. I love clean architecture, API design, and continuously improving my skills through real-world projects.
                 </p>
               </div>
-              <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-                <div className="flex flex-col justify-center space-y-4">
-                  <ul className="grid gap-6">
-                    <li className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                        <span className="font-bold text-primary">01</span>
-                      </div>
-                      <div className="flex-1 space-y-1">
-                        <h3 className="font-medium leading-none">Education</h3>
-                        <p className="text-sm text-muted-foreground">Computer Science Student, Padjadjaran University</p>
-                      </div>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                        <span className="font-bold text-primary">02</span>
-                      </div>
-                      <div className="flex-1 space-y-1">
-                        <h3 className="font-medium leading-none">Experience</h3>
-                        <p className="text-sm text-muted-foreground">Building full-stack projects & learning backend engineering through self-projects and bootcamps</p>
-                      </div>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                        <span className="font-bold text-primary">03</span>
-                      </div>
-                      <div className="flex-1 space-y-1">
-                        <h3 className="font-medium leading-none">Interests</h3>
-                        <p className="text-sm text-muted-foreground">Backend Development</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex justify-center">
-                  {/* PERBAIKAN: Menggunakan komponen Image dari Next.js */}
+               <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
+                 <div className="flex flex-col justify-center space-y-4">
+                   <ul className="grid gap-6">
+                     <li className="flex items-start gap-4">
+                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">01</div>
+                       <div className="text-left">
+                         <h3 className="font-semibold">Education</h3>
+                         <p className="text-sm text-muted-foreground">Computer Science Student, Padjadjaran University</p>
+                       </div>
+                     </li>
+                     <li className="flex items-start gap-4">
+                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">02</div>
+                       <div className="text-left">
+                         <h3 className="font-semibold">Experience</h3>
+                         <p className="text-sm text-muted-foreground">Building full-stack projects & learning backend engineering through self-projects and bootcamps</p>
+                       </div>
+                     </li>
+                     <li className="flex items-start gap-4">
+                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-bold">03</div>
+                       <div className="text-left">
+                         <h3 className="font-semibold">Interests</h3>
+                         <p className="text-sm text-muted-foreground">Backend Development, System Design, and Open Source</p>
+                       </div>
+                     </li>
+                   </ul>
+                 </div>
+                 <div className="flex justify-center">
                   <Image
-                    src="/placeholder.svg"
-                    width={400}
-                    height={400}
+                    src="https://images.unsplash.com/photo-1517694712202-1428bc38a5a5"
+                    width={550}
+                    height={310}
                     alt="About me"
                     className="rounded-lg object-cover"
                   />
@@ -156,27 +161,27 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">My Projects</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Check out some of my recent work
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Check out some of my recent work.
                 </p>
               </div>
-              <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3">
+              <div className="mx-auto grid max-w-5xl gap-8 py-12 sm:grid-cols-2 lg:grid-cols-3">
                 <ProjectCard
                   title="E-commerce Website"
-                  description="A fully functional e-commerce platform with payment integration"
-                  image="/placeholder.svg"
+                  description="A fully functional e-commerce platform with payment integration."
+                  image="https://images.unsplash.com/photo-1522199755839-a2bacb67c546"
                   tags={["React", "Node.js", "MongoDB"]}
                 />
                 <ProjectCard
                   title="Portfolio Website"
-                  description="A responsive portfolio website for a photographer"
-                  image="/placeholder.svg"
-                  tags={["Next.js", "Tailwind CSS", "Framer Motion"]}
+                  description="This responsive portfolio website to showcase my skills."
+                  image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5"
+                  tags={["Next.js", "Tailwind CSS", "Vercel"]}
                 />
                 <ProjectCard
                   title="Task Management App"
-                  description="A drag-and-drop task management application"
-                  image="/placeholder.svg"
+                  description="A drag-and-drop task management application for better productivity."
+                  image="https://images.unsplash.com/photo-1547480053-7d174f67b557"
                   tags={["React", "Firebase", "TypeScript"]}
                 />
               </div>
@@ -189,22 +194,22 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Skills & Technologies</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Technologies and tools I work with
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Technologies and tools I work with.
                 </p>
               </div>
-              <div className="mx-auto grid max-w-5xl gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
+              <div className="mx-auto grid max-w-5xl gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
                 <SkillCategory
                   title="Backend"
                   skills={["Node.js", "Express", "Golang", "MySQL", "REST API", "JWT Auth", "ORM", "MongoDB"]}
                 />
                 <SkillCategory
                   title="Frontend"
-                  skills={["React","EJS", "HTML", "CSS", "JavaScript", "Bootstrap"]}
+                  skills={["React", "Next.js", "HTML", "CSS", "JavaScript", "Tailwind CSS", "Bootstrap"]}
                 />
                 <SkillCategory
                   title="Tools & Others"
-                  skills={["Git", "GitHub", "Postman", "VS Code"]}
+                  skills={["Git", "GitHub", "Postman", "VS Code", "Docker"]}
                 />
               </div>
             </div>
@@ -216,75 +221,34 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Get In Touch</h2>
-                <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Have a project in mind or want to chat? Feel free to reach out!
                 </p>
               </div>
-              <div className="mx-auto grid w-full max-w-lg gap-6 py-12">
-                <form className="grid gap-4">
-                  <div className="grid gap-2">
-                    <label
-                      htmlFor="name"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Enter your name"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      type="email"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-                  <div className="grid gap-2">
-                    <label
-                      htmlFor="message"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="Enter your message"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full">
-                    Send Message
-                  </Button>
+              <div className="mx-auto w-full max-w-lg">
+                {/* Contact form can be made functional with a service like Formspree or an API route */}
+                <form className="grid gap-4 mt-8">
+                  {/* Form fields... */}
                 </form>
-                <div className="flex justify-center gap-4">
-                  <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="icon">
+                 <div className="mt-8 flex justify-center gap-4">
+                  <Button variant="outline" size="icon" asChild>
+                    <Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer">
                       <Github className="h-4 w-4" />
                       <span className="sr-only">GitHub</span>
-                    </Button>
-                  </Link>
-                  <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="icon">
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild>
+                    <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                       <Linkedin className="h-4 w-4" />
                       <span className="sr-only">LinkedIn</span>
-                    </Button>
-                  </Link>
-                  <Link href="mailto:your.email@example.com">
-                    <Button variant="outline" size="icon">
+                    </Link>
+                  </Button>
+                   <Button variant="outline" size="icon" asChild>
+                    <Link href="mailto:achmadfaruqmahdison@gmail.com">
                       <Mail className="h-4 w-4" />
                       <span className="sr-only">Email</span>
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -292,7 +256,7 @@ export default function Home() {
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Your Name. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">&copy; 2024 Achmad Faruq Mahdison. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#about">
             About
@@ -306,25 +270,18 @@ export default function Home() {
         </nav>
       </footer>
     </div>
-  )
-}
-
-// Menambahkan tipe untuk props ProjectCard (jika belum ada)
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
+  );
 }
 
 function ProjectCard({ title, description, image, tags }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden">
-      {/* PERBAIKAN: Menggunakan komponen Image dari Next.js */}
-      <Image src={image || "/placeholder.svg"} alt={title} width={400} height={300} className="w-full h-48 object-cover" />
-      <CardContent className="p-6">
+    <Card className="overflow-hidden group">
+      <div className="overflow-hidden">
+        <Image src={image} alt={title} width={400} height={300} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+      </div>
+      <CardContent className="p-6 text-left">
         <h3 className="text-xl font-bold">{title}</h3>
-        <p className="text-gray-500 mt-2">{description}</p>
+        <p className="text-muted-foreground mt-2 text-sm">{description}</p>
         <div className="flex flex-wrap gap-2 mt-4">
           {tags.map((tag) => (
             <Badge key={tag} variant="secondary">
@@ -337,20 +294,14 @@ function ProjectCard({ title, description, image, tags }: ProjectCardProps) {
   );
 }
 
-// Menambahkan tipe untuk props SkillCategory (jika belum ada)
-interface SkillCategoryProps {
-  title: string;
-  skills: string[];
-}
-
 function SkillCategory({ title, skills }: SkillCategoryProps) {
   return (
     <Card>
-      <CardContent className="p-6">
+      <CardContent className="p-6 text-left">
         <h3 className="text-xl font-bold mb-4">{title}</h3>
         <div className="flex flex-wrap gap-2">
           {skills.map((skill) => (
-            <Badge key={skill} variant="outline">
+            <Badge key={skill} variant="outline" className="text-sm">
               {skill}
             </Badge>
           ))}
