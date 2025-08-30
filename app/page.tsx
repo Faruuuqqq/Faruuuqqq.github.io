@@ -1,5 +1,4 @@
 import { Github, Mail, Linkedin } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -22,10 +21,9 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-10 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        {/* PERBAIKAN: Menambahkan mx-auto di sini */}
         <div className="container mx-auto flex h-14 items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold hidden sm:inline-block">Portfolio</span>
+            <span className="font-bold hidden sm:inline-block">Achmad Faruq Mahdison</span>
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
             <Link href="#about" className="transition-colors hover:text-foreground/80">About</Link>
@@ -47,16 +45,18 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section id="hero" className="w-full py-20 md:py-28 lg:py-32">
-          {/* PERBAIKAN: Menambahkan mx-auto di sini */}
           <div className="container mx-auto px-4 md:px-6">
             <div className="grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_550px] items-center">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Hi, I&apos;m <span className="text-primary">Achmad Faruq Mahdison</span>
+                    Achmad Faruq Mahdison
                   </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    A passionate web developer specializing in creating beautiful and functional websites.
+                  <p className="text-primary font-medium md:text-xl">
+                    Backend Developer | Building Scalable & Efficient Applications
+                  </p>
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl pt-2">
+                    Mahasiswa Teknik Informatika di Universitas Padjadjaran dengan spesialisasi di ekosistem JavaScript. [cite_start]Berpengalaman membangun aplikasi sisi server yang tangguh menggunakan Node.js dan NestJS. [cite: 176, 177]
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 sm:flex-row">
@@ -65,12 +65,12 @@ export default function Home() {
                 </div>
                 <div className="flex gap-2 pt-2">
                   <Button variant="ghost" size="icon" asChild><Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer"><Github className="h-5 w-5" /><span className="sr-only">GitHub</span></Link></Button>
-                  <Button variant="ghost" size="icon" asChild><Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><Linkedin className="h-5 w-5" /><span className="sr-only">LinkedIn</span></Link></Button>
-                  <Button variant="ghost" size="icon" asChild><Link href="mailto:achmadfaruqmahdison@gmail.com"><Mail className="h-5 w-5" /><span className="sr-only">Email</span></Link></Button>
+                  <Button variant="ghost" size="icon" asChild><Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" rel="noopener noreferrer"><Linkedin className="h-5 w-5" /><span className="sr-only">LinkedIn</span></Link></Button>
+                  <Button variant="ghost" size="icon" asChild><Link href="mailto:faruqmahdison@gmail.com"><Mail className="h-5 w-5" /><span className="sr-only">Email</span></Link></Button>
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <Image src="https://avatars.githubusercontent.com/u/91350253?v=4" alt="Profile" width={400} height={400} className="rounded-full w-64 h-64 lg:w-96 lg:h-96 object-cover" />
+                <img src="https://avatars.githubusercontent.com/u/91350253?v=4" alt="Profile" width={400} height={400} className="rounded-full w-64 h-64 lg:w-96 lg:h-96 object-cover" />
               </div>
             </div>
           </div>
@@ -78,73 +78,67 @@ export default function Home() {
 
         {/* About Section */}
         <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-           {/* PERBAIKAN: Menambahkan mx-auto di sini */}
           <div className="container mx-auto px-4 md:px-6 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">About Me</h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mt-4">
-              I&apos;m currently a Computer Science student at Universitas Padjadjaran. With a strong interest in backend development,
-              I&apos;ve built various projects using Node.js, Express, MERN Stack, and TypeScript. I love clean architecture, API design, and continuously improving my skills through real-world projects.
+              [cite_start]Saya adalah seorang Mahasiswa Teknik Informatika di Universitas Padjadjaran dan seorang Back End Developer yang fokus pada pengembangan aplikasi sisi server menggunakan Node.js dan NestJS, dengan keahlian dalam manajemen database MySQL. [cite: 176, 177] [cite_start]Saat ini, saya aktif sebagai Back End Developer di Pansus Studio dan menjadi Mentee di Software Engineer Academy COMPFEST, di mana saya mendalami scalable design patterns, Agile workflows, dan Test-Driven Development (TDD). [cite: 178, 179] [cite_start]Saya memahami seluruh Siklus Hidup Pengembangan Perangkat Lunak (SDLC), prinsip CI/CD, dan dasar-dasar komputasi awan dengan AWS. [cite: 180]
             </p>
           </div>
         </section>
 
         {/* Projects Section */}
         <section id="projects" className="w-full py-12 md:py-24 lg:py-32">
-           {/* PERBAIKAN: Menambahkan mx-auto di sini */}
           <div className="container mx-auto px-4 md:px-6 text-center">
             <div className="space-y-2 mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">My Projects</h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Check out some of my recent work.
+                Berikut adalah beberapa proyek yang pernah saya kerjakan.
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <ProjectCard title="E-commerce Website" description="A fully functional e-commerce platform with payment integration." image="https://images.unsplash.com/photo-1522199755839-a2bacb67c546" tags={["React", "Node.js", "MongoDB"]} />
-              <ProjectCard title="Portfolio Website" description="This responsive portfolio website to showcase my skills." image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" tags={["Next.js", "Tailwind CSS", "Vercel"]} />
-              <ProjectCard title="Task Management App" description="A drag-and-drop task management application for better productivity." image="https://images.unsplash.com/photo-1547480053-7d174f67b557" tags={["React", "Firebase", "TypeScript"]} />
+              <ProjectCard title="E-commerce API" description="Merancang dan membangun REST API untuk platform e-commerce menggunakan NestJS. Mengimplementasikan fitur autentikasi JWT, manajemen produk, dan proses transaksi." image="https://images.unsplash.com/photo-1522199755839-a2bacb67c546" tags={["NestJS", "Node.js", "MySQL", "REST API", "JWT"]} />
+              <ProjectCard title="Task Management Backend" description="Mengembangkan backend untuk aplikasi manajemen tugas dengan fitur kolaborasi real-time. Bertanggung jawab atas desain database dan arsitektur API." image="https://images.unsplash.com/photo-1547480053-7d174f67b557" tags={["Node.js", "Express", "MongoDB", "WebSocket"]} />
+              <ProjectCard title="Portfolio Website" description="Membangun situs portofolio pribadi yang responsif menggunakan Next.js dan di-deploy sebagai situs statis di GitHub Pages." image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" tags={["Next.js", "React", "Tailwind CSS", "Static Site"]} />
             </div>
           </div>
         </section>
 
         {/* Skills Section */}
         <section id="skills" className="w-full py-12 md:py-24 lg:py-32 bg-muted/40">
-           {/* PERBAIKAN: Menambahkan mx-auto di sini */}
           <div className="container mx-auto px-4 md:px-6 text-center">
             <div className="space-y-2 mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Skills & Technologies</h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Technologies and tools I work with.
+                Teknologi dan alat yang saya gunakan dalam bekerja.
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-3">
-              <SkillCategory title="Backend" skills={["Node.js", "Express", "Golang", "MySQL", "REST API", "JWT Auth", "ORM", "MongoDB"]} />
-              <SkillCategory title="Frontend" skills={["React", "Next.js", "HTML", "CSS", "JavaScript", "Tailwind CSS"]} />
-              <SkillCategory title="Tools & Others" skills={["Git", "GitHub", "Postman", "VS Code", "Docker"]} />
+              <SkillCategory title="Backend" skills={["Node.js", "NestJS", "Express", "REST API", "JWT Auth", "MySQL", "MongoDB"]} />
+              <SkillCategory title="Bahasa Pemrograman" skills={["JavaScript", "TypeScript", "Python", "C++"]} />
+              <SkillCategory title="Tools & Others" skills={["Git", "CI/CD", "AWS (Dasar)", "Docker", "Postman"]} />
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32">
-           {/* PERBAIKAN: Menambahkan mx-auto di sini */}
           <div className="container mx-auto px-4 md:px-6 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Get In Touch</h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed mt-4">
-              Have a project in mind or want to chat? Feel free to reach out!
+              [cite_start]Saya sangat antusias untuk berkolaborasi dalam proyek yang menantang dan berkontribusi dalam solusi teknologi yang efektif dan skalabel. [cite: 181] [cite_start]Mari terhubung untuk mendiskusikan peluang di bidang pengembangan backend. [cite: 182]
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Button variant="outline" size="icon" asChild><Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer"><Github className="h-4 w-4" /><span className="sr-only">GitHub</span></Link></Button>
-              <Button variant="outline" size="icon" asChild><Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><Linkedin className="h-4 w-4" /><span className="sr-only">LinkedIn</span></Link></Button>
-              <Button variant="outline" size="icon" asChild><Link href="mailto:achmadfaruqmahdison@gmail.com"><Mail className="h-4 w-4" /><span className="sr-only">Email</span></Link></Button>
+              <Button variant="outline" size="icon" asChild><Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" rel="noopener noreferrer"><Linkedin className="h-4 w-4" /><span className="sr-only">LinkedIn</span></Link></Button>
+              <Button variant="outline" size="icon" asChild><Link href="mailto:faruqmahdison@gmail.com"><Mail className="h-4 w-4" /><span className="sr-only">Email</span></Link></Button>
             </div>
           </div>
         </section>
       </main>
 
       <footer className="py-6 w-full border-t">
-         {/* PERBAIKAN: Menambahkan mx-auto di sini */}
         <div className="container mx-auto flex flex-col gap-2 sm:flex-row items-center justify-between">
-          <p className="text-xs text-muted-foreground">&copy; 2024 Achmad Faruq Mahdison. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">&copy; 2025 Achmad Faruq Mahdison. All rights reserved.</p>
           <nav className="flex gap-4 sm:gap-6">
             <Link className="text-xs hover:underline underline-offset-4" href="#about">About</Link>
             <Link className="text-xs hover:underline underline-offset-4" href="#projects">Projects</Link>
@@ -161,7 +155,7 @@ function ProjectCard({ title, description, image, tags }: ProjectCardProps) {
   return (
     <Card className="overflow-hidden group text-left">
       <div className="overflow-hidden">
-        <Image src={image} alt={title} width={400} height={225} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
+        <img src={image} alt={title} width={400} height={225} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300" />
       </div>
       <CardContent className="p-4">
         <h3 className="text-lg font-bold">{title}</h3>
