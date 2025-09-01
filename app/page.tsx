@@ -74,7 +74,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex items-center justify-center animate-in fade-in zoom-in-50 duration-1000">
-                <img src="https://avatars.githubusercontent.com/u/91350253?v=4" alt="Profile" width={400} height={400} className="rounded-full w-64 h-64 lg:w-96 lg:h-96 object-cover" />
+                <img src="https://media.licdn.com/dms/image/v2/D5603AQHP1q6hN_PZZQ/profile-displayphoto-shrink_800_800/B56Zb4aY1wHUAo-/0/1747924389689?e=1759363200&v=beta&t=iaRWXne04XaaqP5um2W2cRZZmgYzMiR2fMULUk7lQCE" alt="Profile" width={400} height={400} className="rounded-full w-64 h-64 lg:w-96 lg:h-96 object-cover" />
               </div>
             </div>
           </div>
@@ -96,23 +96,24 @@ export default function Home() {
             <div className="space-y-2 mb-12">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">My Projects</h2>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Berikut adalah beberapa proyek yang pernah saya kerjakan.
+                Berikut adalah beberapa project yang pernah saya kerjakan.
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <ProjectCard 
-                title="E-commerce API" 
+                title="SEA-Catering" 
                 description="Merancang dan membangun REST API untuk platform e-commerce menggunakan NestJS. Mengimplementasikan fitur autentikasi JWT, manajemen produk, dan proses transaksi." 
                 image="https://images.unsplash.com/photo-1522199755839-a2bacb67c546" 
-                tags={["NestJS", "Node.js", "MySQL", "REST API", "JWT"]}
-                githubUrl="https://github.com/faruuuqqq"
+                tags={["Next.js", "React", "Tailwing CSS", "Prisma","Docker", "Vercel"]}
+                githubUrl="https://github.com/Faruuuqqq/sea-catering"
+                liveUrl="https://sea-catering-five.vercel.app/"
               />
               <ProjectCard 
-                title="Task Management Backend" 
-                description="Mengembangkan backend untuk aplikasi manajemen tugas dengan fitur kolaborasi real-time. Bertanggung jawab atas desain database dan arsitektur API." 
+                title="Stay Awake Coffe" 
+                description="Proyek ini dibangun sebagai submission untuk technical challenge, mencakup semua aspek pengembangan aplikasi web modern, mulai dari UI/UX, sistem langganan, autentikasi aman, hingga dashboard analitik untuk admin." 
                 image="https://images.unsplash.com/photo-1547480053-7d174f67b557"
-                tags={["Node.js", "Express", "MongoDB", "WebSocket"]}
-                githubUrl="https://github.com/faruuuqqq"
+                tags={["Node.js", "Express", "MySQL", "REST API", "JWT"]}
+                githubUrl="https://github.com/Faruuuqqq/stay_awake_coffe"
               />
               <ProjectCard 
                 title="Portfolio Website" 
@@ -120,7 +121,7 @@ export default function Home() {
                 image="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5" 
                 tags={["Next.js", "React", "Tailwind CSS", "Static Site"]}
                 githubUrl="https://github.com/faruuuqqq/faruuuqqq.github.io"
-                liveUrl="https://faruuuqqq.github.io/"
+                liveUrl="https://faruuuqqq.github.io"
               />
             </div>
           </div>
