@@ -1,293 +1,272 @@
-import { Github, Mail, Linkedin, ExternalLink, Server, Database, Code2, Cpu, Briefcase, GraduationCap } from "lucide-react";
+"use client";
+
+import { Github, Mail, Linkedin, ExternalLink, Server, Database, Code2, Cpu, ArrowRight, Download, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { motion, AnimatePresence } from "framer-motion";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import Magnetic from "@/components/ui/magnetic";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Home() {
+  const fadeIn = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const stagger = {
+    visible: { transition: { staggerChildren: 0.1 } }
+  };
+
   return (
-    <div className="flex min-h-screen flex-col bg-background selection:bg-primary/10">
+    <div className="flex min-h-screen flex-col bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-16 items-center px-4 md:px-6">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-xl tracking-tight bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">AFM.</span>
+      <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-md border-b border-border/40">
+        <div className="container mx-auto max-w-5xl flex h-16 items-center px-4 md:px-6">
+          <Link href="/" className="mr-auto font-bold text-xl tracking-tighter">
+            AFM.
           </Link>
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link href="#about" className="transition-colors hover:text-primary">About</Link>
-            <Link href="#experience" className="transition-colors hover:text-primary">Experience</Link>
-            <Link href="#projects" className="transition-colors hover:text-primary">Projects</Link>
-            <Link href="#skills" className="transition-colors hover:text-primary">Skills</Link>
-          </nav>
-          <div className="flex flex-1 items-center justify-end space-x-2">
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="https://github.com/faruuuqqq" target="_blank" rel="noopener noreferrer">
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
-            </Button>
-            <Button variant="ghost" size="icon" asChild>
-              <Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Link>
-            </Button>
-            <ThemeToggle />
+          <div className="flex items-center space-x-6">
+            <Link href="#projects" className="text-sm font-medium hover:text-muted-foreground transition-colors hidden sm:block">Projects</Link>
+            <Link href="#experience" className="text-sm font-medium hover:text-muted-foreground transition-colors hidden sm:block">Experience</Link>
+            <div className="w-px h-4 bg-border hidden sm:block" />
+            <div className="flex items-center space-x-2">
+              <Magnetic>
+                <Button variant="ghost" size="icon" asChild className="h-8 w-8 rounded-none">
+                  <Link href="https://github.com/faruuuqqq" target="_blank" className="text-muted-foreground hover:text-foreground">
+                    <Github className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button variant="ghost" size="icon" asChild className="h-8 w-8 rounded-none">
+                  <Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" className="text-muted-foreground hover:text-foreground">
+                    <Linkedin className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </Magnetic>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 container mx-auto max-w-5xl px-4 md:px-6">
         {/* Hero Section */}
-        <section id="hero" className="w-full py-20 md:py-32 lg:py-40 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
-            <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary/20 opacity-20 blur-[100px]"></div>
-          </div>
-
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid gap-12 lg:grid-cols-[1fr_400px] items-center">
-              <div className="flex flex-col justify-center space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-                <div className="space-y-4">
-                  <Badge variant="secondary" className="w-fit px-3 py-1 rounded-full">Backend Engineer</Badge>
-                  <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl xl:text-7xl/none">
-                    Achmad Faruq <br />
-                    <span className="text-primary">Mahdison</span>
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl leading-relaxed">
-                    Junior Backend Engineer with expertise in building scalable APIs and production-grade systems using Node.js, NestJS, and TypeScript.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="lg" className="rounded-full px-8">
-                    <Link href="#contact">Contact Me</Link>
-                  </Button>
-                  <Button variant="outline" asChild size="lg" className="rounded-full px-8">
-                    <Link href="#projects">View Projects</Link>
-                  </Button>
-                </div>
-              </div>
-              <div className="flex items-center justify-center lg:justify-end animate-in fade-in zoom-in-50 duration-1000 delay-200">
-                <div className="relative">
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary to-blue-600 opacity-50 blur-lg"></div>
-                  <Avatar className="w-64 h-64 lg:w-80 lg:h-80 border-4 border-background shadow-2xl">
-                    <AvatarImage src="/logo.png" alt="Achmad Faruq Mahdison" className="object-cover" />
-                    <AvatarFallback>AM</AvatarFallback>
-                  </Avatar>
-                </div>
-              </div>
+        <section className="py-24 md:py-32 flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-12">
+          <motion.div 
+            className="flex-1 space-y-8"
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+          >
+            <motion.h1 variants={fadeIn} className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tighter leading-[1.1] text-foreground">
+              Backend Engineer.<br />
+              <span className="text-muted-foreground">Building reliable systems.</span>
+            </motion.h1>
+            <motion.p variants={fadeIn} className="max-w-[600px] text-lg text-muted-foreground leading-relaxed font-medium">
+              I'm Achmad Faruq Mahdison. I specialize in Node.js, TypeScript, and relational databases. Currently focused on building scalable APIs and clean architecture.
+            </motion.p>
+            <motion.div variants={fadeIn} className="flex flex-wrap items-center gap-4 pt-4">
+              <Button asChild className="rounded-none px-6 h-12 text-sm font-semibold">
+                <Link href="#contact">Contact Me <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+              <Button variant="outline" asChild className="rounded-none px-6 h-12 text-sm font-semibold border-border hover:bg-muted">
+                <Link href="#projects">View Work</Link>
+              </Button>
+              <Button variant="ghost" asChild className="rounded-none px-6 h-12 text-sm font-semibold hover:bg-muted">
+                <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 h-4 w-4" /> Resume
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
+            <div className="w-32 h-32 md:w-48 md:h-48 rounded-none overflow-hidden border border-border bg-muted grayscale hover:grayscale-0 transition-all duration-500">
+              <Avatar className="w-full h-full rounded-none">
+                <AvatarImage src="/logo.png" alt="Achmad Faruq Mahdison" className="object-cover" />
+                <AvatarFallback className="rounded-none text-2xl font-bold">AM</AvatarFallback>
+              </Avatar>
             </div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="w-full py-16 md:py-24 bg-muted/30">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">About Me</h2>
-              <div className="w-20 h-1.5 bg-primary rounded-full"></div>
-            </div>
-            <div className="mx-auto max-w-3xl text-lg text-muted-foreground text-center leading-relaxed space-y-6">
-              <p>
-                I am a <strong>Junior Backend Engineer</strong> and an Informatics Engineering student at Universitas Padjadjaran. 
-                I specialize in <strong>Clean Architecture</strong>, <strong>TDD</strong>, and database optimization with PostgreSQL.
-              </p>
-              <p>
-                Passionate about engineering robust backend solutions, I have a proven ability to bridge technical solutions 
-                with community impact, demonstrated through my leadership as a <strong>Google Student Ambassador</strong>.
-              </p>
-            </div>
-          </div>
-        </section>
+        <div className="w-full h-px bg-border my-8" />
 
         {/* Experience Section */}
-        <section id="experience" className="w-full py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-16">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Experience</h2>
-              <p className="text-muted-foreground max-w-[700px]">My professional journey and community involvement.</p>
+        <section id="experience" className="py-16">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeIn}
+            className="space-y-12"
+          >
+            <div className="flex items-baseline justify-between">
+              <h2 className="text-2xl font-bold tracking-tight">Experience</h2>
             </div>
             
-            <div className="mx-auto max-w-4xl space-y-12">
-              {/* Item 1 */}
-              <div className="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary ring-4 ring-background"></div>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                  <h3 className="text-xl font-bold flex items-center gap-2">
-                    <Briefcase className="h-5 w-5 text-primary" /> Google Student Ambassador (GSA)
-                  </h3>
-                  <Badge variant="secondary" className="w-fit mt-1 sm:mt-0">Sep 2025 - Present</Badge>
-                </div>
-                <p className="text-muted-foreground mb-4 font-medium">Leadership & Community</p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-2 text-sm md:text-base">
-                  <li><strong>Promoting Google AI:</strong> Leading efforts to introduce Google Gemini to students and lecturers, teaching effective and ethical AI usage.</li>
-                  <li><strong>Campus Liaison:</strong> Acting as the main contact point between Google and the university to share information about scholarships, events, and career opportunities.</li>
-                </ul>
-              </div>
-
-              {/* Item 2 */}
-              <div className="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary ring-4 ring-background"></div>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                  <h3 className="text-xl font-bold flex items-center gap-2">
-                    <Briefcase className="h-5 w-5 text-primary" /> Pansus Studio
-                  </h3>
-                  <Badge variant="secondary" className="w-fit mt-1 sm:mt-0">Aug 2025 - Present</Badge>
-                </div>
-                <p className="text-muted-foreground mb-4 font-medium">Back End Developer (Internship)</p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-2 text-sm md:text-base">
-                  <li><strong>Built Scalable APIs:</strong> Developed reliable API endpoints using NestJS & TypeORM that serve as the main data source.</li>
-                  <li><strong>Optimized Database Queries:</strong> Managed complex relational schemas in PostgreSQL, reducing query execution time and ensuring data consistency.</li>
-                  <li><strong>Improved System Stability:</strong> Added validation checks (DTOs) and error handling to prevent system crashes and minimize bugs.</li>
-                </ul>
-              </div>
-
-              {/* Item 3 */}
-              <div className="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors">
-                <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-primary ring-4 ring-background"></div>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-2">
-                  <h3 className="text-xl font-bold flex items-center gap-2">
-                    <GraduationCap className="h-5 w-5 text-primary" /> COMPFEST Software Engineer Academy
-                  </h3>
-                  <Badge variant="secondary" className="w-fit mt-1 sm:mt-0">July 2025 - Sep 2025</Badge>
-                </div>
-                <p className="text-muted-foreground mb-4 font-medium">Mentee</p>
-                <ul className="list-disc list-inside text-muted-foreground space-y-2 text-sm md:text-base">
-                  <li><strong>Mastered Modern Engineering:</strong> Completed intensive training on Clean Code Architecture, System Design, and Scalability.</li>
-                  <li><strong>Applied TDD & CI/CD:</strong> Implemented Test-Driven Development and configured GitHub Actions pipelines to streamline deployment.</li>
-                </ul>
-              </div>
+            <div className="space-y-12">
+              <ExperienceItem 
+                role="Google Student Ambassador"
+                company="Google"
+                date="Sep 2025 — Present"
+                description="Acting as the primary liaison between Google and Universitas Padjadjaran. Leading initiatives to educate students on ethical AI usage and modern cloud technologies."
+              />
+              <ExperienceItem 
+                role="Back End Developer Intern"
+                company="Pansus Studio"
+                date="Aug 2025 — Present"
+                description="Developing RESTful APIs with NestJS and TypeORM. Managing complex PostgreSQL schemas, optimizing query performance, and ensuring robust data validation with DTOs."
+              />
+              <ExperienceItem 
+                role="Software Engineer Mentee"
+                company="COMPFEST SEA"
+                date="July 2025 — Sep 2025"
+                description="Completed intensive training on Clean Code, System Design, and Test-Driven Development (TDD). Configured CI/CD pipelines using GitHub Actions."
+              />
             </div>
-          </div>
+          </motion.div>
         </section>
+
+        <div className="w-full h-px bg-border my-8" />
 
         {/* Projects Section */}
-        <section id="projects" className="w-full py-16 md:py-24 bg-muted/30">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-16">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Featured Projects</h2>
-              <p className="text-muted-foreground max-w-[700px]">
-                Highlights of my work in backend engineering and full-stack development.
-              </p>
-            </div>
+        <section id="projects" className="py-16">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="space-y-12"
+          >
+            <motion.h2 variants={fadeIn} className="text-2xl font-bold tracking-tight">Selected Work</motion.h2>
             
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 max-w-6xl mx-auto">
-              
+            <div className="grid gap-6 md:grid-cols-2">
               <ProjectCard 
                 title="Nara Jiwa" 
-                subtitle="Mental Health Support Platform"
-                description="Built secure confidential ticketing system using Firebase allowing anonymous messages. Created a mood tracking tool visualizing user emotions using charts and automatically suggesting help when negative patterns are detected." 
-                image="https://images.unsplash.com/photo-1527689368864-3a821dbccc34?q=80&w=2000&auto=format&fit=crop"
-                tags={["Next.js", "Firebase", "Tailwind CSS", "Recharts"]}
-                githubUrl="#"
+                subtitle="Mental Health Platform"
+                description="Confidential ticketing system and mood tracking tool built with Next.js and Firebase. Implemented dynamic charts for emotional pattern analysis." 
+                tags={["Next.js", "Firebase", "Recharts"]}
                 liveUrl="https://narajiwa.site"
               />
-
               <ProjectCard 
                 title="ChatCraft" 
-                subtitle="AI Automation SaaS Platform"
-                description="Built a subscription-based platform using Next.js and Clerk to secure user logins & data protection. Implemented dynamic JSON-LD Schema Markup and automated sitemap generation to boost search engine visibility." 
-                image="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop" 
-                tags={["Next.js 14", "TypeScript", "PostgreSQL", "Prisma", "Clerk"]}
-                githubUrl="#"
+                subtitle="SaaS Platform"
+                description="Subscription-based automation platform. Integrated Clerk for auth and automated JSON-LD schema generation for SEO optimization." 
+                tags={["Next.js", "PostgreSQL", "Prisma"]}
                 liveUrl="https://chatcraft.store"
               />
-
               <ProjectCard 
                 title="SEA Catering" 
-                subtitle="Healthy Food Delivery App"
-                description="Engineered secure, role-based authentication (Admin/User) using NextAuth.js and developed a dynamic subscription module with real-time price calculation. Delivered an analytical Admin Dashboard (Recharts) to visualize key business metrics." 
-                image="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2000&auto=format&fit=crop" 
-                tags={["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth.js", "Tailwind"]}
+                subtitle="Food Delivery Backend"
+                description="Engineered role-based authentication and a dynamic subscription module with real-time price calculation." 
+                tags={["TypeScript", "PostgreSQL", "NextAuth"]}
                 githubUrl="https://github.com/Faruuuqqq/sea-catering"
-                liveUrl="https://sea-catering-five.vercel.app/"
               />
-              
               <ProjectCard 
                 title="Stay Awake Coffee" 
-                subtitle="E-Commerce Website"
-                description="Architected a scalable backend using the MVC pattern and implemented robust JWT authentication and role-based authorization. Built core e-commerce functionalities tailored for specific business needs." 
-                image="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=2000&auto=format&fit=crop"
-                tags={["Node.js", "Express.js", "MySQL", "JWT", "Swagger", "MVC Pattern"]}
+                subtitle="E-Commerce API"
+                description="RESTful API built on the MVC pattern with robust JWT authentication, comprehensive error handling, and Swagger documentation." 
+                tags={["Node.js", "Express", "MySQL"]}
                 githubUrl="https://github.com/Faruuuqqq/stay_awake_coffe"
               />
-
             </div>
-          </div>
+          </motion.div>
         </section>
+
+        <div className="w-full h-px bg-border my-8" />
 
         {/* Skills Section */}
-        <section id="skills" className="w-full py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col items-center text-center space-y-4 mb-16">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Technical Skills</h2>
-              <p className="text-muted-foreground max-w-[700px]">
-                My technical stack and tools used for development.
-              </p>
-            </div>
-            
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
-              <SkillCard 
-                icon={<Code2 className="h-8 w-8 text-primary" />}
-                title="Languages" 
-                skills={["TypeScript", "JavaScript", "Go", "Python", "Java", "C++"]} 
+        <section id="skills" className="py-16">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeIn}
+            className="space-y-8"
+          >
+            <h2 className="text-2xl font-bold tracking-tight">Tech Stack</h2>
+            <BentoGrid className="max-w-none md:auto-rows-[16rem]">
+              <BentoGridItem
+                title="Languages"
+                description="TypeScript, JavaScript, Go, Python, Java"
+                icon={<Code2 className="h-6 w-6 text-muted-foreground" />}
+                className="md:col-span-1"
               />
-              <SkillCard 
-                icon={<Server className="h-8 w-8 text-primary" />}
-                title="Backend" 
-                skills={["Node.js", "NestJS", "Express.js", "REST API", "JWT", "Swagger"]} 
+              <BentoGridItem
+                title="Backend"
+                description="Node.js, NestJS, Express, REST APIs, GraphQL"
+                icon={<Server className="h-6 w-6 text-muted-foreground" />}
+                className="md:col-span-2"
               />
-              <SkillCard 
-                icon={<Database className="h-8 w-8 text-primary" />}
-                title="Data" 
-                skills={["PostgreSQL", "MySQL", "MongoDB", "Redis", "Prisma", "TypeORM"]} 
+              <BentoGridItem
+                title="Database"
+                description="PostgreSQL, MySQL, MongoDB, Redis, Prisma, TypeORM"
+                icon={<Database className="h-6 w-6 text-muted-foreground" />}
+                className="md:col-span-2"
               />
-              <SkillCard 
-                icon={<Cpu className="h-8 w-8 text-primary" />}
-                title="DevOps & Tools" 
-                skills={["Docker", "AWS", "Git", "CI/CD", "RabbitMQ", "Postman"]} 
+              <BentoGridItem
+                title="DevOps & Tools"
+                description="Docker, AWS, Git, CI/CD, RabbitMQ, Postman"
+                icon={<Cpu className="h-6 w-6 text-muted-foreground" />}
+                className="md:col-span-1"
               />
-            </div>
-          </div>
+            </BentoGrid>
+          </motion.div>
         </section>
 
+        <div className="w-full h-px bg-border my-8" />
+
         {/* Contact Section */}
-        <section id="contact" className="w-full py-20 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-          <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-6">Let&apos;s Build Something Great</h2>
-            <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl leading-relaxed mb-8">
-              I am highly motivated to collaborate on challenging projects. Connect with me to discuss how I can contribute to your team.
+        <section id="contact" className="py-24">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="flex flex-col items-center text-center space-y-6"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">Let's connect.</h2>
+            <p className="text-muted-foreground max-w-md font-medium">
+              I'm always open to discussing new projects, opportunities, or backend architecture.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button variant="secondary" size="lg" asChild className="rounded-full font-bold">
-                <Link href="mailto:faruqmahdison@gmail.com">
-                  <Mail className="mr-2 h-4 w-4" /> Send Email
-                </Link>
-              </Button>
-              <Button variant="outline" size="lg" asChild className="rounded-full bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary font-bold">
-                <Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-                </Link>
-              </Button>
-            </div>
-          </div>
+            
+            <form className="w-full max-w-md mt-8 space-y-4 text-left" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-semibold">Email</label>
+                <input type="email" id="email" name="email" required className="w-full h-12 px-4 border border-border bg-background focus:outline-none focus:border-foreground transition-colors" placeholder="your@email.com" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-sm font-semibold">Message</label>
+                <textarea id="message" name="message" required rows={4} className="w-full p-4 border border-border bg-background focus:outline-none focus:border-foreground transition-colors resize-none" placeholder="How can I help you?"></textarea>
+              </div>
+              <div className="pt-2">
+                <Magnetic>
+                  <Button type="submit" className="w-full rounded-none h-12 font-semibold">Send Message</Button>
+                </Magnetic>
+              </div>
+            </form>
+          </motion.div>
         </section>
       </main>
 
-      <footer className="py-8 w-full border-t bg-background">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-6 gap-4">
-          <p className="text-sm text-muted-foreground">&copy; 2025 Achmad Faruq Mahdison. All rights reserved.</p>
-          <div className="flex gap-6">
-            <Link href="https://github.com/faruuuqqq" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
-              <Github className="h-5 w-5" />
+      <footer className="py-8 text-center text-sm text-muted-foreground border-t border-border">
+        <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between px-4 md:px-6 gap-4">
+          <p className="font-medium">&copy; {new Date().getFullYear()} Achmad Faruq Mahdison.</p>
+          <div className="flex gap-4">
+            <Link href="https://github.com/faruuuqqq" target="_blank" className="hover:text-foreground transition-colors">
+              GitHub
             </Link>
-            <Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
-              <Linkedin className="h-5 w-5" />
-            </Link>
-            <Link href="mailto:faruqmahdison@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-              <Mail className="h-5 w-5" />
+            <Link href="https://www.linkedin.com/in/faruqmahdison" target="_blank" className="hover:text-foreground transition-colors">
+              LinkedIn
             </Link>
           </div>
         </div>
@@ -298,90 +277,132 @@ export default function Home() {
 
 // -- Components --
 
+function ExperienceItem({ role, company, date, description }: { role: string, company: string, date: string, description: string }) {
+  return (
+    <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
+      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-widest text-muted-foreground sm:col-span-2">
+        {date}
+      </header>
+      <div className="z-10 sm:col-span-6">
+        <h3 className="font-semibold leading-snug text-foreground text-lg">
+          {role} <span className="text-muted-foreground font-normal">· {company}</span>
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground font-medium">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 interface ProjectCardProps {
   title: string;
   subtitle: string;
   description: string;
-  image: string;
   tags: string[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
 }
 
-function ProjectCard({ title, subtitle, description, image, tags, githubUrl, liveUrl }: ProjectCardProps) {
+function ProjectCard({ title, subtitle, description, tags, githubUrl, liveUrl }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden flex flex-col h-full hover:shadow-lg transition-all hover:-translate-y-1 duration-300 border-muted group">
-      <div className="relative aspect-video overflow-hidden">
-        <img 
-          src={image} 
-          alt={title} 
-          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" 
-        />
-        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          {githubUrl !== "#" && (
-            <Button size="sm" variant="secondary" asChild className="rounded-full">
-              <Link href={githubUrl} target="_blank">
-                <Github className="mr-2 h-4 w-4" /> Code
-              </Link>
-            </Button>
-          )}
-          {liveUrl && (
-            <Button size="sm" asChild className="rounded-full">
-              <Link href={liveUrl} target="_blank">
-                <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-              </Link>
-            </Button>
-          )}
-        </div>
-      </div>
-      <CardHeader className="p-6 pb-3">
-        <div className="flex justify-between items-start">
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+          }}
+          className="group relative flex flex-col justify-between p-6 bg-card border border-border hover:border-foreground transition-colors h-full rounded-none cursor-pointer text-left"
+        >
           <div>
-            <CardTitle className="text-xl font-bold">{title}</CardTitle>
-            <p className="text-sm text-primary font-medium mt-1">{subtitle}</p>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-bold text-xl tracking-tight">{title}</h3>
+              <div className="flex gap-3">
+                {githubUrl && (
+                  <div onClick={(e) => e.stopPropagation()} className="z-10">
+                    <Link href={githubUrl} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+                      <Github className="h-4 w-4" />
+                    </Link>
+                  </div>
+                )}
+                {liveUrl && (
+                  <div onClick={(e) => e.stopPropagation()} className="z-10">
+                    <Link href={liveUrl} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+                      <ExternalLink className="h-4 w-4" />
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+            <p className="text-sm font-semibold text-foreground mb-3">{subtitle}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6 font-medium line-clamp-2">
+              {description}
+            </p>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent className="p-6 pt-0 flex flex-col flex-grow">
-        <CardDescription className="mt-2 text-base line-clamp-3 mb-4">
-          {description}
-        </CardDescription>
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="font-normal">
-              {tag}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-interface SkillCardProps {
-  title: string;
-  skills: string[];
-  icon: React.ReactNode;
-}
-
-function SkillCard({ title, skills, icon }: SkillCardProps) {
-  return (
-    <Card className="h-full border bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-colors">
-      <CardHeader className="flex flex-row items-center gap-3 pb-2">
-        <div className="p-2 rounded-lg bg-primary/10">
-          {icon}
-        </div>
-        <CardTitle className="text-lg font-bold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <Badge key={skill} variant="outline" className="text-sm bg-background/50 hover:bg-primary/5 hover:text-primary transition-colors">
-              {skill}
-            </Badge>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {tags.map(tag => (
+              <span key={tag} className="text-xs font-semibold px-2 py-1 bg-muted text-muted-foreground border border-border/50">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </motion.div>
+      </Dialog.Trigger>
+      
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 border border-border bg-background p-6 sm:p-10 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]">
+          <Dialog.Title className="text-3xl font-bold tracking-tight mb-2">{title}</Dialog.Title>
+          <Dialog.Description className="text-lg text-muted-foreground font-medium mb-6">
+            {subtitle}
+          </Dialog.Description>
+          
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-2">About</h4>
+              <p className="text-muted-foreground leading-relaxed font-medium">
+                {description}
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-2">Technologies</h4>
+              <div className="flex flex-wrap gap-2">
+                {tags.map(tag => (
+                  <span key={tag} className="text-sm font-semibold px-3 py-1 bg-muted text-muted-foreground border border-border/50">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-4 pt-4 border-t border-border">
+              {liveUrl && (
+                <Button asChild className="rounded-none px-6">
+                  <Link href={liveUrl} target="_blank">
+                    <ExternalLink className="mr-2 h-4 w-4" /> View Live
+                  </Link>
+                </Button>
+              )}
+              {githubUrl && (
+                <Button variant="outline" asChild className="rounded-none px-6 border-border">
+                  <Link href={githubUrl} target="_blank">
+                    <Github className="mr-2 h-4 w-4" /> Source Code
+                  </Link>
+                </Button>
+              )}
+            </div>
+          </div>
+          
+          <Dialog.Close asChild>
+            <Button variant="ghost" size="icon" className="absolute right-4 top-4 rounded-none hover:bg-muted">
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close</span>
+            </Button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 }
